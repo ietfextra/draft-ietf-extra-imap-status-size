@@ -2,9 +2,9 @@
 
 
 Network Working Group                                           S. Bosch
-Internet-Draft                                            March 23, 2015
+Internet-Draft                                            March 24, 2015
 Intended status: Standards Track
-Expires: September 24, 2015
+Expires: September 25, 2015
 
 
     Internet Message Access Protocol (IMAP) - STATUS=SIZE Extension
@@ -29,7 +29,7 @@ Status of this Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on September 24, 2015.
+   This Internet-Draft will expire on September 25, 2015.
 
 Copyright Notice
 
@@ -52,7 +52,7 @@ Copyright Notice
 
 
 
-Bosch                  Expires September 24, 2015               [Page 1]
+Bosch                  Expires September 25, 2015               [Page 1]
 
 Internet-Draft        IMAP - STATUS=SIZE Extension            March 2015
 
@@ -108,7 +108,7 @@ Table of Contents
 
 
 
-Bosch                  Expires September 24, 2015               [Page 2]
+Bosch                  Expires September 25, 2015               [Page 2]
 
 Internet-Draft        IMAP - STATUS=SIZE Extension            March 2015
 
@@ -118,14 +118,14 @@ Internet-Draft        IMAP - STATUS=SIZE Extension            March 2015
    This document extends Internet Message Access Protocol (IMAP)
    [IMAP4rev1] with a new capability called "STATUS=SIZE".  Currently,
    an IMAP client needs to retrieve all message sizes individually using
-   the FETCH command to determine the total size of a mailbox.  The
-   "STATUS=SIZE" capability provides a more efficient means to achieve
-   this.  It extends the STATUS command with a new SIZE data item, which
-   indicates the total size of all messages in the target mailbox, so
-   that this information can be queried with just one command.  When
-   LIST-STATUS IMAP capability [LIST-STATUS] is also available, the SIZE
-   data item can be queried for many mailboxes at once using just one
-   LIST command.
+   the FETCH command with the RFC822.SIZE data item to determine the
+   total size of a mailbox.  The "STATUS=SIZE" capability provides a
+   more efficient means to achieve this.  It extends the STATUS command
+   with a new SIZE data item, which indicates the total size of all
+   messages in the target mailbox.  This way, this information can be
+   queried with just one STATUS command.  When the LIST-STATUS IMAP
+   capability [LIST-STATUS] is also available, the SIZE data item can be
+   queried for many mailboxes at once using just one LIST command.
 
    [FIXME: some application examples]
 
@@ -147,7 +147,7 @@ Internet-Draft        IMAP - STATUS=SIZE Extension            March 2015
 
    SIZE
       The total size of the mailbox in octets.  This MUST be equal to
-      the sum of the sizes of all messages in the mailbox.
+      the sum of the [RFC5322] size of all messages in the mailbox.
 
    Example:
 
@@ -164,7 +164,7 @@ Internet-Draft        IMAP - STATUS=SIZE Extension            March 2015
 
 
 
-Bosch                  Expires September 24, 2015               [Page 3]
+Bosch                  Expires September 25, 2015               [Page 3]
 
 Internet-Draft        IMAP - STATUS=SIZE Extension            March 2015
 
@@ -220,7 +220,7 @@ Internet-Draft        IMAP - STATUS=SIZE Extension            March 2015
 
 
 
-Bosch                  Expires September 24, 2015               [Page 4]
+Bosch                  Expires September 25, 2015               [Page 4]
 
 Internet-Draft        IMAP - STATUS=SIZE Extension            March 2015
 
@@ -229,6 +229,9 @@ Internet-Draft        IMAP - STATUS=SIZE Extension            March 2015
               Melnikov, A. and T. Sirainen, "IMAP4 Extension for
               Returning STATUS Information in Extended LIST", RFC 5819,
               March 2010.
+
+   [RFC5322]  Resnick, P., Ed., "Internet Message Format", RFC 5322,
+              October 2008.
 
 
 Author's Address
@@ -273,8 +276,5 @@ Author's Address
 
 
 
-
-
-
-Bosch                  Expires September 24, 2015               [Page 5]
+Bosch                  Expires September 25, 2015               [Page 5]
 

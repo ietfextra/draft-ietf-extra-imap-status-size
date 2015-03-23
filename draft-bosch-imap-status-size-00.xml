@@ -52,13 +52,13 @@ Internet Message Access Protocol (IMAP) - STATUS=SIZE Extension
 <t>This document extends Internet Message Access Protocol
 (IMAP) <xref target="IMAP4rev1"/> with a new capability called "STATUS=SIZE".
 Currently, an IMAP client needs to retrieve all message sizes individually
-using the FETCH command to determine the total size of a mailbox. The
-"STATUS=SIZE" capability provides a more efficient means to achieve this.
-It extends the STATUS command with a new SIZE data item, which indicates the
-total size of all messages in the target mailbox. This way, this information can
-be queried with just one STATUS command. When LIST-STATUS IMAP capability
-<xref target="LIST-STATUS"/> is also available, the SIZE data item can be
-queried for many mailboxes at once using just one LIST command.</t>
+using the FETCH command with the RFC822.SIZE data item to determine the total
+size of a mailbox. The "STATUS=SIZE" capability provides a more efficient means
+to achieve this. It extends the STATUS command with a new SIZE data item, which
+indicates the total size of all messages in the target mailbox. This way, this
+information can be queried with just one STATUS command. When the LIST-STATUS
+IMAP capability <xref target="LIST-STATUS"/> is also available, the SIZE data
+item can be queried for many mailboxes at once using just one LIST command.</t>
 
 <t>[FIXME: some application examples]</t>
 </section>
@@ -80,7 +80,7 @@ response:
 <list style="hanging">
   <t hangText="SIZE"><vspace blankLines="0"/>
   The total size of the mailbox in octets. This MUST be equal to the sum of the
-  sizes of all messages in the mailbox. 
+  <xref target="RFC5322"/> size of all messages in the mailbox.
 	</t>
 </list>
 </t>
@@ -212,6 +212,30 @@ registry located at
 		</front>
 		<seriesInfo name='RFC' value='5819' />
 		<format type='TXT' octets='10584' target='http://www.rfc-editor.org/rfc/rfc5819.txt' />
+	</reference>
+
+	<reference anchor='RFC5322'>
+		<front>
+		<title>Internet Message Format</title>
+		<author initials='P.' surname='Resnick' fullname='Peter W. 
+		Resnick' role='editor'>
+		<organization>Qualcomm Incorporated</organization>
+		<address>
+		<postal>
+		<street>5775 Morehouse Drive</street>
+		<city>San Diego</city>
+		<region>CA</region>
+		<code>92121-1714</code>
+		<country>US</country></postal>
+		<phone>+1 858 651 4478</phone>
+		<email>presnick@qualcomm.com</email>
+		<uri>http://www.qualcomm.com/~presnick/</uri></address></author>
+		<date year='2008' month='October' />
+		</front>
+		<seriesInfo name='RFC' value='5322' />
+		<format type='TXT' octets='122322' target='http://www.rfc-editor.org/rfc/rfc5322.txt' />
+		<format type='HTML' octets='213393' target='http://xml.resource.org/public/rfc/html/rfc5322.html' />
+		<format type='XML' octets='174234' target='http://xml.resource.org/public/rfc/xml/rfc5322.xml' />
 	</reference>
 </references>
 
