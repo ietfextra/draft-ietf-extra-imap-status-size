@@ -1,0 +1,280 @@
+
+
+
+Network Working Group                                           S. Bosch
+Internet-Draft                                            March 23, 2015
+Intended status: Standards Track
+Expires: September 24, 2015
+
+
+    Internet Message Access Protocol (IMAP) - STATUS=SIZE Extension
+                    draft-bosch-imap-status-size-00
+
+Abstract
+
+   [FIXME]
+
+Status of this Memo
+
+   This Internet-Draft is submitted in full conformance with the
+   provisions of BCP 78 and BCP 79.
+
+   Internet-Drafts are working documents of the Internet Engineering
+   Task Force (IETF).  Note that other groups may also distribute
+   working documents as Internet-Drafts.  The list of current Internet-
+   Drafts is at http://datatracker.ietf.org/drafts/current/.
+
+   Internet-Drafts are draft documents valid for a maximum of six months
+   and may be updated, replaced, or obsoleted by other documents at any
+   time.  It is inappropriate to use Internet-Drafts as reference
+   material or to cite them other than as "work in progress."
+
+   This Internet-Draft will expire on September 24, 2015.
+
+Copyright Notice
+
+   Copyright (c) 2015 IETF Trust and the persons identified as the
+   document authors.  All rights reserved.
+
+   This document is subject to BCP 78 and the IETF Trust's Legal
+   Provisions Relating to IETF Documents
+   (http://trustee.ietf.org/license-info) in effect on the date of
+   publication of this document.  Please review these documents
+   carefully, as they describe your rights and restrictions with respect
+   to this document.  Code Components extracted from this document must
+   include Simplified BSD License text as described in Section 4.e of
+   the Trust Legal Provisions and are provided without warranty as
+   described in the Simplified BSD License.
+
+
+
+
+
+
+
+Bosch                  Expires September 24, 2015               [Page 1]
+
+Internet-Draft        IMAP - STATUS=SIZE Extension            March 2015
+
+
+Table of Contents
+
+   1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . . . 3
+   2.  Conventions Used in This Document . . . . . . . . . . . . . . . 3
+   3.  STATUS Command and Response Extensions  . . . . . . . . . . . . 3
+   4.  Formal Syntax . . . . . . . . . . . . . . . . . . . . . . . . . 4
+   5.  Security Considerations . . . . . . . . . . . . . . . . . . . . 4
+   6.  IANA Considerations . . . . . . . . . . . . . . . . . . . . . . 4
+   7.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . . . 4
+   8.  Normative References  . . . . . . . . . . . . . . . . . . . . . 4
+   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . . . 5
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Bosch                  Expires September 24, 2015               [Page 2]
+
+Internet-Draft        IMAP - STATUS=SIZE Extension            March 2015
+
+
+1.  Introduction
+
+   This document extends Internet Message Access Protocol (IMAP)
+   [IMAP4rev1] with a new capability called "STATUS=SIZE".  Currently,
+   an IMAP client needs to retrieve all message sizes individually using
+   the FETCH command to determine the total size of a mailbox.  The
+   "STATUS=SIZE" capability provides a more efficient means to achieve
+   this.  It extends the STATUS command with a new SIZE data item, which
+   indicates the total size of all messages in the target mailbox, so
+   that this information can be queried with just one command.  When
+   LIST-STATUS IMAP capability [LIST-STATUS] is also available, the SIZE
+   data item can be queried for many mailboxes at once using just one
+   LIST command.
+
+   [FIXME: some application examples]
+
+
+2.  Conventions Used in This Document
+
+   In examples, "C:" indicates lines sent by a client that is connected
+   to a server.  "S:" indicates lines sent by the server to the client.
+
+   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+   "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
+   document are to be interpreted as described in [KEYWORDS].
+
+
+3.  STATUS Command and Response Extensions
+
+   This extension defines one new status data item for the STATUS
+   command and response:
+
+   SIZE
+      The total size of the mailbox in octets.  This MUST be equal to
+      the sum of the sizes of all messages in the mailbox.
+
+   Example:
+
+   C: A01 STATUS frop (MESSAGES SIZE UIDNEXT)
+   S: * STATUS frop (MESSAGES 30 SIZE 44421 UIDNEXT 242344)
+   S: A01 OK STATUS completed
+
+   When the LIST-STATUS IMAP capability [LIST-STATUS] is also available,
+   the STATUS command can be combined with the LIST command to further
+   improve efficiency.  This way, the sizes of many mailboxes can be
+   queried with just one LIST command.
+
+   Example:
+
+
+
+Bosch                  Expires September 24, 2015               [Page 3]
+
+Internet-Draft        IMAP - STATUS=SIZE Extension            March 2015
+
+
+   C: A02 LIST "" % RETURN (STATUS (MESSAGES SIZE))
+   S: * LIST () "."  "INBOX"
+   S: * STATUS "INBOX" (MESSAGES 17 SIZE 16234)
+   S: * LIST () "." "frop"
+   S: * STATUS "frop" (MESSAGES 30 SIZE 44421)
+   S: A02 OK List completed.
+
+
+4.  Formal Syntax
+
+   The following syntax specification augments the grammar specified in
+   [IMAP4rev1].  It uses the Augmented Backus-Naur Form (ABNF) notation
+   as specified in [ABNF].  Elements not defined here are taken from
+   [IMAP4rev1].
+
+   status-att /= "SIZE"
+
+
+5.  Security Considerations
+
+   There are no known additional security issues with this extension
+   beyond those described in the base protocol described in [IMAP4rev1].
+
+
+6.  IANA Considerations
+
+   The IANA is requested to add "STATUS=SIZE" to the "IMAP Capabilities"
+   registry located at
+   <http://www.iana.org/assignments/imap-capabilities>.
+
+
+7.  Acknowledgements
+
+   Reviews are appreciated.
+
+
+8.  Normative References
+
+   [ABNF]     Crocker, D. and P. Overell, "Augmented BNF for Syntax
+              Specifications: ABNF", STD 68, RFC 5234, January 2008.
+
+   [IMAP4rev1]
+              Crispin, M., "INTERNET MESSAGE ACCESS PROTOCOL - VERSION
+              4rev1", RFC 3501, March 2003.
+
+   [KEYWORDS]
+              Bradner, S., "Key words for use in RFCs to Indicate
+              Requirement Levels", BCP 14, RFC 2119, March 1997.
+
+
+
+Bosch                  Expires September 24, 2015               [Page 4]
+
+Internet-Draft        IMAP - STATUS=SIZE Extension            March 2015
+
+
+   [LIST-STATUS]
+              Melnikov, A. and T. Sirainen, "IMAP4 Extension for
+              Returning STATUS Information in Extended LIST", RFC 5819,
+              March 2010.
+
+
+Author's Address
+
+   Stephan Bosch
+   Enschede
+   NL
+
+   Email: stephan@rename-it.nl
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Bosch                  Expires September 24, 2015               [Page 5]
+
