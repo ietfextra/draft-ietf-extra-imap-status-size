@@ -41,8 +41,15 @@ Internet Message Access Protocol (IMAP) - STATUS=SIZE Extension
 <keyword>size</keyword>
 
 <abstract>
-<t> [FIXME]
-</t>
+<t>This document adds a new capability called "STATUS=SIZE" to the Internet
+Message Access Protocol (IMAP). It defines a new data item called "SIZE" for
+the STATUS command. This allows retrieving the total storage size of a mailbox
+with a single STATUS command. Without the "STATUS=SIZE" capability, it is
+necessary to retrieve and sum the sizes of all individual messages in that
+mailbox. When the "LIST-STATUS" IMAP capability is also available, the storage
+sizes of many mailboxes can be queried at once using just one LIST command.
+This capability is particularly useful for IMAP clients that do not cache the
+state of the message store.</t>
 </abstract>
 </front>
 
@@ -51,16 +58,26 @@ Internet Message Access Protocol (IMAP) - STATUS=SIZE Extension
 <section title="Introduction">
 <t>This document extends Internet Message Access Protocol
 (IMAP) <xref target="IMAP4rev1"/> with a new capability called "STATUS=SIZE".
-Currently, an IMAP client needs to retrieve all message sizes individually
-using the FETCH command with the RFC822.SIZE data item to determine the total
-size of a mailbox. The "STATUS=SIZE" capability provides a more efficient means
-to achieve this. It extends the STATUS command with a new SIZE data item, which
-indicates the total size of all messages in the target mailbox. This way, this
-information can be queried with just one STATUS command. When the LIST-STATUS
-IMAP capability <xref target="LIST-STATUS"/> is also available, the SIZE data
-item can be queried for many mailboxes at once using just one LIST command.</t>
+To determine the total storage size of a mailbox, an IMAP client currently needs
+to retrieve all message sizes individually using the FETCH command with the
+RFC822.SIZE data item. The "STATUS=SIZE" capability provides a more efficient
+means to achieve this. It extends the STATUS command with a new "SIZE" data
+item, which indicates the total size of all messages in the target mailbox.
+This way, this information can be queried with just one STATUS command. When the
+"LIST-STATUS" IMAP capability <xref target="LIST-STATUS"/> is also available,
+the SIZE data item can be queried for many mailboxes at once using just one LIST
+command.</t>
 
-<t>[FIXME: some application examples]</t>
+<t>This capability is particularly useful for IMAP clients that do not cache the
+state of the message store, such as most webmail clients. Without the
+"STATUS=SIZE" capability, such clients need to fetch all message sizes from the
+server when the size of a mailbox needs to be determined, for example when the
+user requests detailed quota usage information. The "QUOTA" capability
+<xref target="QUOTA"/> is no help in that scenario, since the provided QUOTAROOT
+command can only yield the "STORAGE" resource usage of a whole quota root, but
+not for a single mailbox within that root. The "MESSAGE" resource usage for a
+mailbox can already be queried with the existing "MESSAGES" data item of the
+STATUS command.</t>
 </section>
 
 <section title="Conventions Used in This Document">
@@ -239,8 +256,25 @@ registry located at
 	</reference>
 </references>
 
-<!--<references title="Informative References">
-</references>-->
-</back>
-
+<references title="Informative References">
+	<reference anchor='QUOTA'>
+		<front>
+		<title abbrev='QUOTA'>IMAP4 QUOTA extension</title>
+		<author initials='J.' surname='Myers' fullname='John G. Myers'>
+		<organization>Carnegie-Mellon University</organization>
+		<address>
+		<postal>
+		<street>5000 Forbes Ave.</street>
+		<city>Pittsburgh</city>
+		<region>PA</region>
+		<code>15213-3890</code>
+		<country>US</country></postal>
+		<email>jgm+@cmu.edu</email></address></author>
+		<date year='1997' month='January' />
+		</front>
+		<seriesInfo name='RFC' value='2087' />
+		<format type='TXT' octets='8542' target='http://www.rfc-editor.org/rfc/rfc2087.txt' />
+	</reference>
+	</references>
+	</back>
 </rfc>

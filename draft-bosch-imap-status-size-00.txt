@@ -2,9 +2,9 @@
 
 
 Network Working Group                                           S. Bosch
-Internet-Draft                                            March 24, 2015
+Internet-Draft                                            April 23, 2015
 Intended status: Standards Track
-Expires: September 25, 2015
+Expires: October 25, 2015
 
 
     Internet Message Access Protocol (IMAP) - STATUS=SIZE Extension
@@ -12,7 +12,16 @@ Expires: September 25, 2015
 
 Abstract
 
-   [FIXME]
+   This document adds a new capability called "STATUS=SIZE" to the
+   Internet Message Access Protocol (IMAP).  It defines a new data item
+   called "SIZE" for the STATUS command.  This allows retrieving the
+   total storage size of a mailbox with a single STATUS command.
+   Without the "STATUS=SIZE" capability, it is necessary to retrieve and
+   sum the sizes of all individual messages in that mailbox.  When the
+   "LIST-STATUS" IMAP capability is also available, the storage sizes of
+   many mailboxes can be queried at once using just one LIST command.
+   This capability is particularly useful for IMAP clients that do not
+   cache the state of the message store.
 
 Status of this Memo
 
@@ -29,7 +38,7 @@ Status of this Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on September 25, 2015.
+   This Internet-Draft will expire on October 25, 2015.
 
 Copyright Notice
 
@@ -40,21 +49,19 @@ Copyright Notice
    Provisions Relating to IETF Documents
    (http://trustee.ietf.org/license-info) in effect on the date of
    publication of this document.  Please review these documents
+
+
+
+Bosch                   Expires October 25, 2015                [Page 1]
+
+Internet-Draft        IMAP - STATUS=SIZE Extension            April 2015
+
+
    carefully, as they describe your rights and restrictions with respect
    to this document.  Code Components extracted from this document must
    include Simplified BSD License text as described in Section 4.e of
    the Trust Legal Provisions and are provided without warranty as
    described in the Simplified BSD License.
-
-
-
-
-
-
-
-Bosch                  Expires September 25, 2015               [Page 1]
-
-Internet-Draft        IMAP - STATUS=SIZE Extension            March 2015
 
 
 Table of Contents
@@ -66,7 +73,9 @@ Table of Contents
    5.  Security Considerations . . . . . . . . . . . . . . . . . . . . 4
    6.  IANA Considerations . . . . . . . . . . . . . . . . . . . . . . 4
    7.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . . . 4
-   8.  Normative References  . . . . . . . . . . . . . . . . . . . . . 4
+   8.  References  . . . . . . . . . . . . . . . . . . . . . . . . . . 5
+     8.1.  Normative References  . . . . . . . . . . . . . . . . . . . 5
+     8.2.  Informative References  . . . . . . . . . . . . . . . . . . 5
    Author's Address  . . . . . . . . . . . . . . . . . . . . . . . . . 5
 
 
@@ -99,35 +108,37 @@ Table of Contents
 
 
 
-
-
-
-
-
-
-
-
-
-Bosch                  Expires September 25, 2015               [Page 2]
+Bosch                   Expires October 25, 2015                [Page 2]
 
-Internet-Draft        IMAP - STATUS=SIZE Extension            March 2015
+Internet-Draft        IMAP - STATUS=SIZE Extension            April 2015
 
 
 1.  Introduction
 
    This document extends Internet Message Access Protocol (IMAP)
-   [IMAP4rev1] with a new capability called "STATUS=SIZE".  Currently,
-   an IMAP client needs to retrieve all message sizes individually using
-   the FETCH command with the RFC822.SIZE data item to determine the
-   total size of a mailbox.  The "STATUS=SIZE" capability provides a
-   more efficient means to achieve this.  It extends the STATUS command
-   with a new SIZE data item, which indicates the total size of all
-   messages in the target mailbox.  This way, this information can be
-   queried with just one STATUS command.  When the LIST-STATUS IMAP
-   capability [LIST-STATUS] is also available, the SIZE data item can be
-   queried for many mailboxes at once using just one LIST command.
+   [IMAP4rev1] with a new capability called "STATUS=SIZE".  To determine
+   the total storage size of a mailbox, an IMAP client currently needs
+   to retrieve all message sizes individually using the FETCH command
+   with the RFC822.SIZE data item.  The "STATUS=SIZE" capability
+   provides a more efficient means to achieve this.  It extends the
+   STATUS command with a new "SIZE" data item, which indicates the total
+   size of all messages in the target mailbox.  This way, this
+   information can be queried with just one STATUS command.  When the
+   "LIST-STATUS" IMAP capability [LIST-STATUS] is also available, the
+   SIZE data item can be queried for many mailboxes at once using just
+   one LIST command.
 
-   [FIXME: some application examples]
+   This capability is particularly useful for IMAP clients that do not
+   cache the state of the message store, such as most webmail clients.
+   Without the "STATUS=SIZE" capability, such clients need to fetch all
+   message sizes from the server when the size of a mailbox needs to be
+   determined, for example when the user requests detailed quota usage
+   information.  The "QUOTA" capability [QUOTA] is no help in that
+   scenario, since the provided QUOTAROOT command can only yield the
+   "STORAGE" resource usage of a whole quota root, but not for a single
+   mailbox within that root.  The "MESSAGE" resource usage for a mailbox
+   can already be queried with the existing "MESSAGES" data item of the
+   STATUS command.
 
 
 2.  Conventions Used in This Document
@@ -151,6 +162,13 @@ Internet-Draft        IMAP - STATUS=SIZE Extension            March 2015
 
    Example:
 
+
+
+Bosch                   Expires October 25, 2015                [Page 3]
+
+Internet-Draft        IMAP - STATUS=SIZE Extension            April 2015
+
+
    C: A01 STATUS frop (MESSAGES SIZE UIDNEXT)
    S: * STATUS frop (MESSAGES 30 SIZE 44421 UIDNEXT 242344)
    S: A01 OK STATUS completed
@@ -161,13 +179,6 @@ Internet-Draft        IMAP - STATUS=SIZE Extension            March 2015
    queried with just one LIST command.
 
    Example:
-
-
-
-Bosch                  Expires September 25, 2015               [Page 3]
-
-Internet-Draft        IMAP - STATUS=SIZE Extension            March 2015
-
 
    C: A02 LIST "" % RETURN (STATUS (MESSAGES SIZE))
    S: * LIST () "."  "INBOX"
@@ -205,7 +216,16 @@ Internet-Draft        IMAP - STATUS=SIZE Extension            March 2015
    Reviews are appreciated.
 
 
-8.  Normative References
+8.  References
+
+
+
+Bosch                   Expires October 25, 2015                [Page 4]
+
+Internet-Draft        IMAP - STATUS=SIZE Extension            April 2015
+
+
+8.1.  Normative References
 
    [ABNF]     Crocker, D. and P. Overell, "Augmented BNF for Syntax
               Specifications: ABNF", STD 68, RFC 5234, January 2008.
@@ -218,13 +238,6 @@ Internet-Draft        IMAP - STATUS=SIZE Extension            March 2015
               Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119, March 1997.
 
-
-
-Bosch                  Expires September 25, 2015               [Page 4]
-
-Internet-Draft        IMAP - STATUS=SIZE Extension            March 2015
-
-
    [LIST-STATUS]
               Melnikov, A. and T. Sirainen, "IMAP4 Extension for
               Returning STATUS Information in Extended LIST", RFC 5819,
@@ -232,6 +245,11 @@ Internet-Draft        IMAP - STATUS=SIZE Extension            March 2015
 
    [RFC5322]  Resnick, P., Ed., "Internet Message Format", RFC 5322,
               October 2008.
+
+8.2.  Informative References
+
+   [QUOTA]    Myers, J., "IMAP4 QUOTA extension", RFC 2087,
+              January 1997.
 
 
 Author's Address
@@ -258,23 +276,5 @@ Author's Address
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Bosch                  Expires September 25, 2015               [Page 5]
+Bosch                   Expires October 25, 2015                [Page 5]
 
