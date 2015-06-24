@@ -42,14 +42,10 @@ Internet Message Access Protocol (IMAP) - STATUS=SIZE Extension
 
 <abstract>
 <t>This document adds a new capability called "STATUS=SIZE" to the Internet
-Message Access Protocol (IMAP). It defines a new data item called "SIZE" for
-the STATUS command. This allows retrieving the total storage size of a mailbox
-with a single STATUS command. Without the "STATUS=SIZE" capability, it is
-necessary to retrieve and sum the sizes of all individual messages in that
-mailbox. When the "LIST-STATUS" IMAP capability is also available, the storage
-sizes of many mailboxes can be queried at once using just one LIST command.
-This capability is particularly useful for IMAP clients that do not cache the
-state of the message store.</t>
+Message Access Protocol (IMAP). It allows retrieving the total storage size of a
+mailbox with a single STATUS command rather than retrieving and summing the
+sizes of all individual messages in that mailbox.
+</t>
 </abstract>
 </front>
 
@@ -75,9 +71,7 @@ server when the size of a mailbox needs to be determined, for example when the
 user requests detailed quota usage information. The "QUOTA" capability
 <xref target="QUOTA"/> is no help in that scenario, since the provided QUOTAROOT
 command can only yield the "STORAGE" resource usage of a whole quota root, but
-not for a single mailbox within that root. The "MESSAGE" resource usage for a
-mailbox can already be queried with the existing "MESSAGES" data item of the
-STATUS command.</t>
+not for a single mailbox within that root.</t>
 </section>
 
 <section title="Conventions Used in This Document">
@@ -103,11 +97,36 @@ response:
 </t>
 
 <t>Example:</t>
-<?rfc needLines="1" ?>
+<?rfc needLines="4" ?>
 <figure><artwork><![CDATA[
 C: A01 STATUS frop (MESSAGES SIZE UIDNEXT)
-S: * STATUS frop (MESSAGES 30 SIZE 44421 UIDNEXT 242344)
+S: * STATUS frop (MESSAGES 8 SIZE 44421 UIDNEXT 242344)
 S: A01 OK STATUS completed
+]]></artwork></figure>
+
+<t>The same information can be obtained by using the following commands,
+albeit less efficient:</t>
+<?rfc needLines="20" ?>
+<figure><artwork><![CDATA[
+C: A02 SELECT "frop"
+S: * FLAGS (\Answered \Flagged \Deleted \Seen \Draft)
+S: * 8 EXISTS
+S: * 1 RECENT
+S: * OK [UNSEEN 7] First unseen.
+S: * OK [UIDVALIDITY 1364851417] UIDs valid
+S: * OK [UIDNEXT 242344] Predicted next UID
+S: * OK [HIGHESTMODSEQ 3914] Highest
+S: A02 OK [READ-WRITE] Select completed.
+C: A03 FETCH 1:* (RFC822.SIZE)
+S: * 1 FETCH (RFC822.SIZE 3224)
+S: * 2 FETCH (RFC822.SIZE 1222)
+S: * 3 FETCH (RFC822.SIZE 444)
+S: * 4 FETCH (RFC822.SIZE 4516)
+S: * 5 FETCH (RFC822.SIZE 544)
+S: * 6 FETCH (RFC822.SIZE 922)
+S: * 7 FETCH (RFC822.SIZE 31126)
+S: * 8 FETCH (RFC822.SIZE 2423)
+S: A03 OK Fetch completed.
 ]]></artwork></figure>
 
 <t>When the LIST-STATUS IMAP capability <xref target="LIST-STATUS"/> is
@@ -116,14 +135,14 @@ further improve efficiency. This way, the sizes of many mailboxes can be
 queried with just one LIST command.</t>
 
 <t>Example:</t>
-<?rfc needLines="1" ?>
+<?rfc needLines="7" ?>
 <figure><artwork><![CDATA[
-C: A02 LIST "" % RETURN (STATUS (MESSAGES SIZE))
+C: A04 LIST "" % RETURN (STATUS (MESSAGES SIZE))
 S: * LIST () "."  "INBOX"
 S: * STATUS "INBOX" (MESSAGES 17 SIZE 16234)
 S: * LIST () "." "frop"
-S: * STATUS "frop" (MESSAGES 30 SIZE 44421)
-S: A02 OK List completed.
+S: * STATUS "frop" (MESSAGES 8 SIZE 44421)
+S: A04 OK List completed.
 ]]></artwork></figure>
 
 </section>
@@ -134,11 +153,16 @@ S: A02 OK List completed.
 notation as specified in <xref target="ABNF"/>. Elements not defined here are
 taken from <xref target="IMAP4rev1"/>.</t>
 
-<?rfc needLines="8" ?>
+<?rfc needLines="2" ?>
 <figure><artwork type="ABNF"><![CDATA[
 status-att /= "SIZE"
 ]]></artwork></figure>
 
+<t>The size value returned in the STATUS response is an unsigned 64-bit integer
+(0 &lt;= n &lt; 18,446,744,073,709,551,615).
+[FIXME: the normal IMAP number syntax is 32-bit unsigned; we follow whatever
+APPENDLIMIT does with this]
+</t>
 </section>
 
 <section anchor="Security" title="Security Considerations">
@@ -154,7 +178,9 @@ registry located at
 </section>
 
 <section title="Acknowledgements">
-<t>Reviews are appreciated.</t>
+<t>Thanks to Alexey Melnikov and Michael Slusarz for reviews and suggestions.
+</t>
+<t>More reviews are appreciated.</t>
 </section>
 </middle>
 
