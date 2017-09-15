@@ -157,7 +157,9 @@ taken from <xref target="IMAP4rev1"/>.</t>
 
 <?rfc needLines="2" ?>
 <figure><artwork type="ABNF"><![CDATA[
-status-att /= "SIZE"
+capability  =/ "STATUS=SIZE"
+
+status-att  =/ "SIZE"
 ]]></artwork></figure>
 
 <t>[FIXME: Interaction with 64BIT capability]
