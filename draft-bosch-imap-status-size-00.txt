@@ -1,10 +1,11 @@
 
 
 
+
 Network Working Group                                           S. Bosch
-Internet-Draft                                             June 24, 2015
-Intended status: Standards Track
-Expires: December 26, 2015
+Internet-Draft
+Intended status: Standards Track                      September 15, 2017
+Expires: March 19, 2018
 
 
     Internet Message Access Protocol (IMAP) - STATUS=SIZE Extension
@@ -18,7 +19,7 @@ Abstract
    than retrieving and summing the sizes of all individual messages in
    that mailbox.
 
-Status of this Memo
+Status of This Memo
 
    This Internet-Draft is submitted in full conformance with the
    provisions of BCP 78 and BCP 79.
@@ -33,11 +34,11 @@ Status of this Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on December 26, 2015.
+   This Internet-Draft will expire on March 19, 2018.
 
 Copyright Notice
 
-   Copyright (c) 2015 IETF Trust and the persons identified as the
+   Copyright (c) 2017 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -52,66 +53,24 @@ Copyright Notice
 
 
 
-Bosch                   Expires December 26, 2015               [Page 1]
+Bosch                    Expires March 19, 2018                 [Page 1]
 
-Internet-Draft        IMAP - STATUS=SIZE Extension             June 2015
+Internet-Draft        IMAP - STATUS=SIZE Extension        September 2017
 
 
 Table of Contents
 
-   1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . . . 3
-   2.  Conventions Used in This Document . . . . . . . . . . . . . . . 3
-   3.  STATUS Command and Response Extensions  . . . . . . . . . . . . 3
-   4.  Formal Syntax . . . . . . . . . . . . . . . . . . . . . . . . . 4
-   5.  Security Considerations . . . . . . . . . . . . . . . . . . . . 5
-   6.  IANA Considerations . . . . . . . . . . . . . . . . . . . . . . 5
-   7.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . . . 5
-   8.  References  . . . . . . . . . . . . . . . . . . . . . . . . . . 5
-     8.1.  Normative References  . . . . . . . . . . . . . . . . . . . 5
-     8.2.  Informative References  . . . . . . . . . . . . . . . . . . 6
-   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . . . 6
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Bosch                   Expires December 26, 2015               [Page 2]
-
-Internet-Draft        IMAP - STATUS=SIZE Extension             June 2015
-
+   1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
+   2.  Conventions Used in This Document . . . . . . . . . . . . . .   2
+   3.  STATUS Command and Response Extensions  . . . . . . . . . . .   3
+   4.  Formal Syntax . . . . . . . . . . . . . . . . . . . . . . . .   4
+   5.  Security Considerations . . . . . . . . . . . . . . . . . . .   4
+   6.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   4
+   7.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .   4
+   8.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   4
+     8.1.  Normative References  . . . . . . . . . . . . . . . . . .   4
+     8.2.  Informative References  . . . . . . . . . . . . . . . . .   5
+   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .   5
 
 1.  Introduction
 
@@ -138,7 +97,6 @@ Internet-Draft        IMAP - STATUS=SIZE Extension             June 2015
    "STORAGE" resource usage of a whole quota root, but not for a single
    mailbox within that root.
 
-
 2.  Conventions Used in This Document
 
    In examples, "C:" indicates lines sent by a client that is connected
@@ -147,6 +105,13 @@ Internet-Draft        IMAP - STATUS=SIZE Extension             June 2015
    The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
    "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
    document are to be interpreted as described in [KEYWORDS].
+
+
+
+
+Bosch                    Expires March 19, 2018                 [Page 2]
+
+Internet-Draft        IMAP - STATUS=SIZE Extension        September 2017
 
 
 3.  STATUS Command and Response Extensions
@@ -159,15 +124,6 @@ Internet-Draft        IMAP - STATUS=SIZE Extension             June 2015
       the sum of the [RFC5322] size of all messages in the mailbox.
 
    Example:
-
-
-
-
-
-Bosch                   Expires December 26, 2015               [Page 3]
-
-Internet-Draft        IMAP - STATUS=SIZE Extension             June 2015
-
 
    C: A01 STATUS frop (MESSAGES SIZE UIDNEXT)
    S: * STATUS frop (MESSAGES 8 SIZE 44421 UIDNEXT 242344)
@@ -203,13 +159,23 @@ Internet-Draft        IMAP - STATUS=SIZE Extension             June 2015
 
    Example:
 
+
+
+
+
+
+
+Bosch                    Expires March 19, 2018                 [Page 3]
+
+Internet-Draft        IMAP - STATUS=SIZE Extension        September 2017
+
+
    C: A04 LIST "" % RETURN (STATUS (MESSAGES SIZE))
    S: * LIST () "."  "INBOX"
    S: * STATUS "INBOX" (MESSAGES 17 SIZE 16234)
    S: * LIST () "." "frop"
    S: * STATUS "frop" (MESSAGES 8 SIZE 44421)
    S: A04 OK List completed.
-
 
 4.  Formal Syntax
 
@@ -218,33 +184,20 @@ Internet-Draft        IMAP - STATUS=SIZE Extension             June 2015
    as specified in [ABNF].  Elements not defined here are taken from
    [IMAP4rev1].
 
-
-
-Bosch                   Expires December 26, 2015               [Page 4]
-
-Internet-Draft        IMAP - STATUS=SIZE Extension             June 2015
-
-
    status-att /= "SIZE"
 
-   The size value returned in the STATUS response is an unsigned 64-bit
-   integer (0 <= n < 18,446,744,073,709,551,615).  [FIXME: the normal
-   IMAP number syntax is 32-bit unsigned; we follow whatever APPENDLIMIT
-   does with this]
-
+   [FIXME: Interaction with 64BIT capability]
 
 5.  Security Considerations
 
    There are no known additional security issues with this extension
    beyond those described in the base protocol described in [IMAP4rev1].
 
-
 6.  IANA Considerations
 
    The IANA is requested to add "STATUS=SIZE" to the "IMAP Capabilities"
-   registry located at
-   <http://www.iana.org/assignments/imap-capabilities>.
-
+   registry located at <http://www.iana.org/assignments/imap-
+   capabilities>.
 
 7.  Acknowledgements
 
@@ -252,7 +205,6 @@ Internet-Draft        IMAP - STATUS=SIZE Extension             June 2015
    suggestions.
 
    More reviews are appreciated.
-
 
 8.  References
 
@@ -265,6 +217,15 @@ Internet-Draft        IMAP - STATUS=SIZE Extension             June 2015
               Crispin, M., "INTERNET MESSAGE ACCESS PROTOCOL - VERSION
               4rev1", RFC 3501, March 2003.
 
+
+
+
+
+Bosch                    Expires March 19, 2018                 [Page 4]
+
+Internet-Draft        IMAP - STATUS=SIZE Extension        September 2017
+
+
    [KEYWORDS]
               Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119, March 1997.
@@ -274,21 +235,13 @@ Internet-Draft        IMAP - STATUS=SIZE Extension             June 2015
               Returning STATUS Information in Extended LIST", RFC 5819,
               March 2010.
 
-
-
-Bosch                   Expires December 26, 2015               [Page 5]
-
-Internet-Draft        IMAP - STATUS=SIZE Extension             June 2015
-
-
    [RFC5322]  Resnick, P., Ed., "Internet Message Format", RFC 5322,
               October 2008.
 
 8.2.  Informative References
 
-   [QUOTA]    Myers, J., "IMAP4 QUOTA extension", RFC 2087,
-              January 1997.
-
+   [QUOTA]    Myers, J., "IMAP4 QUOTA extension", RFC 2087, January
+              1997.
 
 Author's Address
 
@@ -324,13 +277,4 @@ Author's Address
 
 
 
-
-
-
-
-
-
-
-
-Bosch                   Expires December 26, 2015               [Page 6]
-
+Bosch                    Expires March 19, 2018                 [Page 5]

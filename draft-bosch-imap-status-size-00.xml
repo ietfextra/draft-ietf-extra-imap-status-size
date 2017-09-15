@@ -158,10 +158,7 @@ taken from <xref target="IMAP4rev1"/>.</t>
 status-att /= "SIZE"
 ]]></artwork></figure>
 
-<t>The size value returned in the STATUS response is an unsigned 64-bit integer
-(0 &lt;= n &lt; 18,446,744,073,709,551,615).
-[FIXME: the normal IMAP number syntax is 32-bit unsigned; we follow whatever
-APPENDLIMIT does with this]
+<t>[FIXME: Interaction with 64BIT capability]
 </t>
 </section>
 
