@@ -91,7 +91,8 @@ response:
 <list style="hanging">
   <t hangText="SIZE"><vspace blankLines="0"/>
   The total size of the mailbox in octets. This MUST be equal to the sum of the
-  <xref target="RFC5322"/> size of all messages in the mailbox.
+  values of the <xref target="IMAP4rev1">RFC822.SIZE FETCH message data item
+  </xref> of all messages in the mailbox.
 	</t>
 </list>
 </t>
@@ -252,30 +253,6 @@ registry located at
 		</front>
 		<seriesInfo name='RFC' value='5819' />
 		<format type='TXT' octets='10584' target='http://www.rfc-editor.org/rfc/rfc5819.txt' />
-	</reference>
-
-	<reference anchor='RFC5322'>
-		<front>
-		<title>Internet Message Format</title>
-		<author initials='P.' surname='Resnick' fullname='Peter W. 
-		Resnick' role='editor'>
-		<organization>Qualcomm Incorporated</organization>
-		<address>
-		<postal>
-		<street>5775 Morehouse Drive</street>
-		<city>San Diego</city>
-		<region>CA</region>
-		<code>92121-1714</code>
-		<country>US</country></postal>
-		<phone>+1 858 651 4478</phone>
-		<email>presnick@qualcomm.com</email>
-		<uri>http://www.qualcomm.com/~presnick/</uri></address></author>
-		<date year='2008' month='October' />
-		</front>
-		<seriesInfo name='RFC' value='5322' />
-		<format type='TXT' octets='122322' target='http://www.rfc-editor.org/rfc/rfc5322.txt' />
-		<format type='HTML' octets='213393' target='http://xml.resource.org/public/rfc/html/rfc5322.html' />
-		<format type='XML' octets='174234' target='http://xml.resource.org/public/rfc/xml/rfc5322.xml' />
 	</reference>
 </references>
 

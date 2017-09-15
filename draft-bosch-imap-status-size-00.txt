@@ -121,7 +121,8 @@ Internet-Draft        IMAP - STATUS=SIZE Extension        September 2017
 
    SIZE
       The total size of the mailbox in octets.  This MUST be equal to
-      the sum of the [RFC5322] size of all messages in the mailbox.
+      the sum of the values of the RFC822.SIZE FETCH message data item
+      [IMAP4rev1] of all messages in the mailbox.
 
    Example:
 
@@ -158,7 +159,6 @@ Internet-Draft        IMAP - STATUS=SIZE Extension        September 2017
    queried with just one LIST command.
 
    Example:
-
 
 
 
@@ -235,9 +235,6 @@ Internet-Draft        IMAP - STATUS=SIZE Extension        September 2017
               Returning STATUS Information in Extended LIST", RFC 5819,
               March 2010.
 
-   [RFC5322]  Resnick, P., Ed., "Internet Message Format", RFC 5322,
-              October 2008.
-
 8.2.  Informative References
 
    [QUOTA]    Myers, J., "IMAP4 QUOTA extension", RFC 2087, January
@@ -250,6 +247,9 @@ Author's Address
    NL
 
    Email: stephan@rename-it.nl
+
+
+
 
 
 
