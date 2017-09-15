@@ -3,7 +3,7 @@
 
 
 Network Working Group                                           S. Bosch
-Internet-Draft
+Internet-Draft                                                Dovecot Oy
 Intended status: Standards Track                      September 15, 2017
 Expires: March 19, 2018
 
@@ -243,12 +243,12 @@ Internet-Draft        IMAP - STATUS=SIZE Extension        September 2017
 Author's Address
 
    Stephan Bosch
-   Enschede
-   NL
+   Dovecot Oy
+   Lars Sonckin Kaari 10
+   Espoo  02600
+   Finland
 
-   Email: stephan@rename-it.nl
-
-
+   Email: stephan.bosch@dovecot.fi
 
 
 

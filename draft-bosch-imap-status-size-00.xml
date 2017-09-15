@@ -21,14 +21,15 @@ Internet Message Access Protocol (IMAP) - STATUS=SIZE Extension
 </title>
 
 <author fullname="Stephan Bosch" initials="S." surname="Bosch">
-  <organization/>
+	<organization>Dovecot Oy</organization>
   <address>
     <postal>
-      <street></street>
-      <city>Enschede</city>
-      <country>NL</country>
+      <street>Lars Sonckin Kaari 10</street>
+      <code>02600</code>
+      <city>Espoo</city>
+      <country>Finland</country>
     </postal>
-    <email>stephan@rename-it.nl</email>
+    <email>stephan.bosch@dovecot.fi</email>
   </address>
 </author>
 
