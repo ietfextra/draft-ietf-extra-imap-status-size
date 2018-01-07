@@ -2,7 +2,7 @@
 
 
 
-Network Working Group                                           S. Bosch
+EXTRA                                                           S. Bosch
 Internet-Draft                                                Dovecot Oy
 Intended status: Standards Track                         January 7, 2018
 Expires: July 11, 2018

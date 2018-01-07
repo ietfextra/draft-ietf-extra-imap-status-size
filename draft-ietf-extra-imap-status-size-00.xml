@@ -35,8 +35,8 @@ Internet Message Access Protocol (IMAP) - STATUS=SIZE Extension
 
 <date/>
 
-<area>General</area>
-<!--<workgroup>APPSAWG</workgroup>-->
+<area>ART</area>
+<workgroup>EXTRA</workgroup>
 <keyword>imap</keyword>
 <keyword>status</keyword>
 <keyword>size</keyword>
