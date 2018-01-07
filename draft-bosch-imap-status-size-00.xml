@@ -168,8 +168,8 @@ status-att  =/ "SIZE"
 
 <section anchor="Security" title="Security Considerations">
 <t>There are no known additional security issues with this extension
-beyond those described in the base protocol described in
-<xref target="IMAP4rev1"/>.</t>
+beyond those described for the base protocol <xref target="IMAP4rev1"/> and
+for the LIST-STATUS extension <xref target="LIST-STATUS"/>.</t>
 </section>
 
 <section anchor="IANA" title="IANA Considerations">
@@ -179,8 +179,8 @@ registry located at
 </section>
 
 <section title="Acknowledgements">
-<t>Thanks to Alexey Melnikov and Michael Slusarz for reviews and suggestions.
-</t>
+<t>Thanks to Alexey Melnikov, Stan Kalisch, and Michael Slusarz for reviews and
+suggestions.</t>
 <t>More reviews are appreciated.</t>
 </section>
 </middle>

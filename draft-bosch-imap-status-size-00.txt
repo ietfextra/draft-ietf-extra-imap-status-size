@@ -4,8 +4,8 @@
 
 Network Working Group                                           S. Bosch
 Internet-Draft                                                Dovecot Oy
-Intended status: Standards Track                      September 15, 2017
-Expires: March 19, 2018
+Intended status: Standards Track                         January 7, 2018
+Expires: July 11, 2018
 
 
     Internet Message Access Protocol (IMAP) - STATUS=SIZE Extension
@@ -34,11 +34,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on March 19, 2018.
+   This Internet-Draft will expire on July 11, 2018.
 
 Copyright Notice
 
-   Copyright (c) 2017 IETF Trust and the persons identified as the
+   Copyright (c) 2018 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-Bosch                    Expires March 19, 2018                 [Page 1]
+Bosch                     Expires July 11, 2018                 [Page 1]
 
-Internet-Draft        IMAP - STATUS=SIZE Extension        September 2017
+Internet-Draft        IMAP - STATUS=SIZE Extension          January 2018
 
 
 Table of Contents
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Bosch                    Expires March 19, 2018                 [Page 2]
+Bosch                     Expires July 11, 2018                 [Page 2]
 
-Internet-Draft        IMAP - STATUS=SIZE Extension        September 2017
+Internet-Draft        IMAP - STATUS=SIZE Extension          January 2018
 
 
 3.  STATUS Command and Response Extensions
@@ -165,9 +165,9 @@ Internet-Draft        IMAP - STATUS=SIZE Extension        September 2017
 
 
 
-Bosch                    Expires March 19, 2018                 [Page 3]
+Bosch                     Expires July 11, 2018                 [Page 3]
 
-Internet-Draft        IMAP - STATUS=SIZE Extension        September 2017
+Internet-Draft        IMAP - STATUS=SIZE Extension          January 2018
 
 
    C: A04 LIST "" % RETURN (STATUS (MESSAGES SIZE))
@@ -193,7 +193,8 @@ Internet-Draft        IMAP - STATUS=SIZE Extension        September 2017
 5.  Security Considerations
 
    There are no known additional security issues with this extension
-   beyond those described in the base protocol described in [IMAP4rev1].
+   beyond those described for the base protocol [IMAP4rev1] and for the
+   LIST-STATUS extension [LIST-STATUS].
 
 6.  IANA Considerations
 
@@ -203,8 +204,8 @@ Internet-Draft        IMAP - STATUS=SIZE Extension        September 2017
 
 7.  Acknowledgements
 
-   Thanks to Alexey Melnikov and Michael Slusarz for reviews and
-   suggestions.
+   Thanks to Alexey Melnikov, Stan Kalisch, and Michael Slusarz for
+   reviews and suggestions.
 
    More reviews are appreciated.
 
@@ -215,16 +216,19 @@ Internet-Draft        IMAP - STATUS=SIZE Extension        September 2017
    [ABNF]     Crocker, D. and P. Overell, "Augmented BNF for Syntax
               Specifications: ABNF", STD 68, RFC 5234, January 2008.
 
+
+
+
+
+
+Bosch                     Expires July 11, 2018                 [Page 4]
+
+Internet-Draft        IMAP - STATUS=SIZE Extension          January 2018
+
+
    [IMAP4rev1]
               Crispin, M., "INTERNET MESSAGE ACCESS PROTOCOL - VERSION
               4rev1", RFC 3501, March 2003.
-
-
-
-Bosch                    Expires March 19, 2018                 [Page 4]
-
-Internet-Draft        IMAP - STATUS=SIZE Extension        September 2017
-
 
    [KEYWORDS]
               Bradner, S., "Key words for use in RFCs to Indicate
@@ -273,8 +277,4 @@ Author's Address
 
 
 
-
-
-
-
-Bosch                    Expires March 19, 2018                 [Page 5]
+Bosch                     Expires July 11, 2018                 [Page 5]
