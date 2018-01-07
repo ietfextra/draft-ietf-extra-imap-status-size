@@ -9,7 +9,7 @@ Expires: July 11, 2018
 
 
     Internet Message Access Protocol (IMAP) - STATUS=SIZE Extension
-                    draft-bosch-imap-status-size-00
+                  draft-ietf-extra-imap-status-size-00
 
 Abstract
 
