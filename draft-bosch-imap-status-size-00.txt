@@ -207,8 +207,6 @@ Internet-Draft        IMAP - STATUS=SIZE Extension          January 2018
    Thanks to Bron Gondwana, Alexey Melnikov, Stan Kalisch, and Michael
    Slusarz for reviews and suggestions.
 
-   More reviews are appreciated.
-
 8.  References
 
 8.1.  Normative References
@@ -216,7 +214,9 @@ Internet-Draft        IMAP - STATUS=SIZE Extension          January 2018
    [ABNF]     Crocker, D. and P. Overell, "Augmented BNF for Syntax
               Specifications: ABNF", STD 68, RFC 5234, January 2008.
 
-
+   [IMAP4rev1]
+              Crispin, M., "INTERNET MESSAGE ACCESS PROTOCOL - VERSION
+              4rev1", RFC 3501, March 2003.
 
 
 
@@ -225,10 +225,6 @@ Bosch                     Expires July 11, 2018                 [Page 4]
 
 Internet-Draft        IMAP - STATUS=SIZE Extension          January 2018
 
-
-   [IMAP4rev1]
-              Crispin, M., "INTERNET MESSAGE ACCESS PROTOCOL - VERSION
-              4rev1", RFC 3501, March 2003.
 
    [KEYWORDS]
               Bradner, S., "Key words for use in RFCs to Indicate
@@ -253,6 +249,10 @@ Author's Address
    Finland
 
    Email: stephan.bosch@dovecot.fi
+
+
+
+
 
 
 
