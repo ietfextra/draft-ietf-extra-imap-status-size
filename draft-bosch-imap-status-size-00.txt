@@ -204,8 +204,8 @@ Internet-Draft        IMAP - STATUS=SIZE Extension          January 2018
 
 7.  Acknowledgements
 
-   Thanks to Alexey Melnikov, Stan Kalisch, and Michael Slusarz for
-   reviews and suggestions.
+   Thanks to Bron Gondwana, Alexey Melnikov, Stan Kalisch, and Michael
+   Slusarz for reviews and suggestions.
 
    More reviews are appreciated.
 
