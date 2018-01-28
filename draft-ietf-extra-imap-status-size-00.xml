@@ -162,8 +162,6 @@ capability  =/ "STATUS=SIZE"
 status-att  =/ "SIZE"
 ]]></artwork></figure>
 
-<t>[FIXME: Interaction with 64BIT capability]
-</t>
 </section>
 
 <section anchor="Security" title="Security Considerations">

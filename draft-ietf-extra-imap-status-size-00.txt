@@ -4,8 +4,8 @@
 
 EXTRA                                                           S. Bosch
 Internet-Draft                                                Dovecot Oy
-Intended status: Standards Track                         January 7, 2018
-Expires: July 11, 2018
+Intended status: Standards Track                        January 28, 2018
+Expires: August 1, 2018
 
 
     Internet Message Access Protocol (IMAP) - STATUS=SIZE Extension
@@ -34,7 +34,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on July 11, 2018.
+   This Internet-Draft will expire on August 1, 2018.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Bosch                     Expires July 11, 2018                 [Page 1]
+Bosch                    Expires August 1, 2018                 [Page 1]
 
 Internet-Draft        IMAP - STATUS=SIZE Extension          January 2018
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Bosch                     Expires July 11, 2018                 [Page 2]
+Bosch                    Expires August 1, 2018                 [Page 2]
 
 Internet-Draft        IMAP - STATUS=SIZE Extension          January 2018
 
@@ -165,7 +165,7 @@ Internet-Draft        IMAP - STATUS=SIZE Extension          January 2018
 
 
 
-Bosch                     Expires July 11, 2018                 [Page 3]
+Bosch                    Expires August 1, 2018                 [Page 3]
 
 Internet-Draft        IMAP - STATUS=SIZE Extension          January 2018
 
@@ -187,8 +187,6 @@ Internet-Draft        IMAP - STATUS=SIZE Extension          January 2018
    capability  =/ "STATUS=SIZE"
 
    status-att  =/ "SIZE"
-
-   [FIXME: Interaction with 64BIT capability]
 
 5.  Security Considerations
 
@@ -221,7 +219,9 @@ Internet-Draft        IMAP - STATUS=SIZE Extension          January 2018
 
 
 
-Bosch                     Expires July 11, 2018                 [Page 4]
+
+
+Bosch                    Expires August 1, 2018                 [Page 4]
 
 Internet-Draft        IMAP - STATUS=SIZE Extension          January 2018
 
@@ -277,4 +277,4 @@ Author's Address
 
 
 
-Bosch                     Expires July 11, 2018                 [Page 5]
+Bosch                    Expires August 1, 2018                 [Page 5]
