@@ -140,7 +140,7 @@ queried with just one LIST command.</t>
 <?rfc needLines="7" ?>
 <figure><artwork><![CDATA[
 C: A04 LIST "" % RETURN (STATUS (MESSAGES SIZE))
-S: * LIST () "."  "INBOX"
+S: * LIST () "." "INBOX"
 S: * STATUS "INBOX" (MESSAGES 17 SIZE 16234)
 S: * LIST () "." "frop"
 S: * STATUS "frop" (MESSAGES 8 SIZE 44421)

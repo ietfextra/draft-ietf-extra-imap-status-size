@@ -171,7 +171,7 @@ Internet-Draft        IMAP - STATUS=SIZE Extension          January 2018
 
 
    C: A04 LIST "" % RETURN (STATUS (MESSAGES SIZE))
-   S: * LIST () "."  "INBOX"
+   S: * LIST () "." "INBOX"
    S: * STATUS "INBOX" (MESSAGES 17 SIZE 16234)
    S: * LIST () "." "frop"
    S: * STATUS "frop" (MESSAGES 8 SIZE 44421)
