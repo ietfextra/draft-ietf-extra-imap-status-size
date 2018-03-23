@@ -4,8 +4,8 @@
 
 EXTRA                                                           S. Bosch
 Internet-Draft                                                Dovecot Oy
-Intended status: Standards Track                        January 28, 2018
-Expires: August 1, 2018
+Intended status: Standards Track                          March 23, 2018
+Expires: September 24, 2018
 
 
     Internet Message Access Protocol (IMAP) - STATUS=SIZE Extension
@@ -34,7 +34,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on August 1, 2018.
+   This Internet-Draft will expire on September 24, 2018.
 
 Copyright Notice
 
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-Bosch                    Expires August 1, 2018                 [Page 1]
+Bosch                  Expires September 24, 2018               [Page 1]
 
-Internet-Draft        IMAP - STATUS=SIZE Extension          January 2018
+Internet-Draft        IMAP - STATUS=SIZE Extension            March 2018
 
 
 Table of Contents
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Bosch                    Expires August 1, 2018                 [Page 2]
+Bosch                  Expires September 24, 2018               [Page 2]
 
-Internet-Draft        IMAP - STATUS=SIZE Extension          January 2018
+Internet-Draft        IMAP - STATUS=SIZE Extension            March 2018
 
 
 3.  STATUS Command and Response Extensions
@@ -120,9 +120,14 @@ Internet-Draft        IMAP - STATUS=SIZE Extension          January 2018
    command and response:
 
    SIZE
-      The total size of the mailbox in octets.  This MUST be equal to
-      the sum of the values of the RFC822.SIZE FETCH message data item
-      [IMAP4rev1] of all messages in the mailbox.
+      The total size of the mailbox in octets.  This is not strictly
+      required to be an exact value, but it MUST be equal to or greater
+      than the sum of the values of the RFC822.SIZE FETCH message data
+      item [IMAP4rev1] of all messages in the mailbox.  When the "QUOTA"
+      capability [QUOTA] is also supported, this value SHOULD be equal
+      to the storage usage value used to enforce the "STORAGE" resource
+      limit for this mailbox.  This way, the client can directly infer
+      the quota usage.
 
    Example:
 
@@ -158,17 +163,14 @@ Internet-Draft        IMAP - STATUS=SIZE Extension          January 2018
    improve efficiency.  This way, the sizes of many mailboxes can be
    queried with just one LIST command.
 
-   Example:
 
 
-
-
-
-
-Bosch                    Expires August 1, 2018                 [Page 3]
+Bosch                  Expires September 24, 2018               [Page 3]
 
-Internet-Draft        IMAP - STATUS=SIZE Extension          January 2018
+Internet-Draft        IMAP - STATUS=SIZE Extension            March 2018
 
+
+   Example:
 
    C: A04 LIST "" % RETURN (STATUS (MESSAGES SIZE))
    S: * LIST () "." "INBOX"
@@ -219,11 +221,9 @@ Internet-Draft        IMAP - STATUS=SIZE Extension          January 2018
 
 
 
-
-
-Bosch                    Expires August 1, 2018                 [Page 4]
+Bosch                  Expires September 24, 2018               [Page 4]
 
-Internet-Draft        IMAP - STATUS=SIZE Extension          January 2018
+Internet-Draft        IMAP - STATUS=SIZE Extension            March 2018
 
 
    [KEYWORDS]
@@ -277,4 +277,4 @@ Author's Address
 
 
 
-Bosch                    Expires August 1, 2018                 [Page 5]
+Bosch                  Expires September 24, 2018               [Page 5]
