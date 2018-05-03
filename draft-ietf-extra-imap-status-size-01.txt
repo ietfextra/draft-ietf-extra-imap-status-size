@@ -4,8 +4,8 @@
 
 EXTRA                                                           S. Bosch
 Internet-Draft                                                Dovecot Oy
-Intended status: Standards Track                          March 24, 2018
-Expires: September 25, 2018
+Intended status: Standards Track                             May 4, 2018
+Expires: November 5, 2018
 
 
     Internet Message Access Protocol (IMAP) - STATUS=SIZE Extension
@@ -34,7 +34,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on September 25, 2018.
+   This Internet-Draft will expire on November 5, 2018.
 
 Copyright Notice
 
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-Bosch                  Expires September 25, 2018               [Page 1]
+Bosch                   Expires November 5, 2018                [Page 1]
 
-Internet-Draft        IMAP - STATUS=SIZE Extension            March 2018
+Internet-Draft        IMAP - STATUS=SIZE Extension              May 2018
 
 
 Table of Contents
@@ -67,9 +67,7 @@ Table of Contents
    5.  Security Considerations . . . . . . . . . . . . . . . . . . .   4
    6.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   4
    7.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .   4
-   8.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   4
-     8.1.  Normative References  . . . . . . . . . . . . . . . . . .   4
-     8.2.  Informative References  . . . . . . . . . . . . . . . . .   5
+   8.  Normative References  . . . . . . . . . . . . . . . . . . . .   4
    Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .   5
 
 1.  Introduction
@@ -109,9 +107,11 @@ Table of Contents
 
 
 
-Bosch                  Expires September 25, 2018               [Page 2]
+
+
+Bosch                   Expires November 5, 2018                [Page 2]
 
-Internet-Draft        IMAP - STATUS=SIZE Extension            March 2018
+Internet-Draft        IMAP - STATUS=SIZE Extension              May 2018
 
 
 3.  STATUS Command and Response Extensions
@@ -165,9 +165,9 @@ Internet-Draft        IMAP - STATUS=SIZE Extension            March 2018
 
 
 
-Bosch                  Expires September 25, 2018               [Page 3]
+Bosch                   Expires November 5, 2018                [Page 3]
 
-Internet-Draft        IMAP - STATUS=SIZE Extension            March 2018
+Internet-Draft        IMAP - STATUS=SIZE Extension              May 2018
 
 
    Example:
@@ -207,9 +207,7 @@ Internet-Draft        IMAP - STATUS=SIZE Extension            March 2018
    Thanks to Bron Gondwana, Alexey Melnikov, Stan Kalisch, and Michael
    Slusarz for reviews and suggestions.
 
-8.  References
-
-8.1.  Normative References
+8.  Normative References
 
    [ABNF]     Crocker, D. and P. Overell, "Augmented BNF for Syntax
               Specifications: ABNF", STD 68, RFC 5234, January 2008.
@@ -221,9 +219,11 @@ Internet-Draft        IMAP - STATUS=SIZE Extension            March 2018
 
 
 
-Bosch                  Expires September 25, 2018               [Page 4]
+
+
+Bosch                   Expires November 5, 2018                [Page 4]
 
-Internet-Draft        IMAP - STATUS=SIZE Extension            March 2018
+Internet-Draft        IMAP - STATUS=SIZE Extension              May 2018
 
 
    [KEYWORDS]
@@ -234,8 +234,6 @@ Internet-Draft        IMAP - STATUS=SIZE Extension            March 2018
               Melnikov, A. and T. Sirainen, "IMAP4 Extension for
               Returning STATUS Information in Extended LIST", RFC 5819,
               March 2010.
-
-8.2.  Informative References
 
    [QUOTA]    Myers, J., "IMAP4 QUOTA extension", RFC 2087, January
               1997.
@@ -277,4 +275,6 @@ Author's Address
 
 
 
-Bosch                  Expires September 25, 2018               [Page 5]
+
+
+Bosch                   Expires November 5, 2018                [Page 5]
