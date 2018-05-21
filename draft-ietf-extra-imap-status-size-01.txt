@@ -4,8 +4,8 @@
 
 EXTRA                                                           S. Bosch
 Internet-Draft                                                Dovecot Oy
-Intended status: Standards Track                             May 4, 2018
-Expires: November 5, 2018
+Intended status: Standards Track                            May 21, 2018
+Expires: November 22, 2018
 
 
     Internet Message Access Protocol (IMAP) - STATUS=SIZE Extension
@@ -34,7 +34,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on November 5, 2018.
+   This Internet-Draft will expire on November 22, 2018.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Bosch                   Expires November 5, 2018                [Page 1]
+Bosch                   Expires November 22, 2018               [Page 1]
 
 Internet-Draft        IMAP - STATUS=SIZE Extension              May 2018
 
@@ -88,12 +88,15 @@ Table of Contents
    This capability is particularly useful for IMAP clients that do not
    cache the state of the message store, such as most webmail clients.
    Without the "STATUS=SIZE" capability, such clients need to fetch all
-   message sizes from the server when the size of a mailbox needs to be
-   determined, for example when the user requests detailed quota usage
-   information.  The "QUOTA" capability [QUOTA] is no help in that
-   scenario, since the provided QUOTAROOT command can only yield the
-   "STORAGE" resource usage of a whole quota root, but not for a single
-   mailbox within that root.
+   message sizes from the server when the size of an individual mailbox
+   needs to be determined.  For example, a user may request detailed
+   quota usage information for each mailbox to find out which specific
+   mailboxes consume most of the available storage resources.  Using
+   this information, the user can get an overview of which mailboxes
+   need to be cleaned up to reduce quota usage.  The "QUOTA" capability
+   [QUOTA] is no help in that scenario, since the provided QUOTAROOT
+   command can only yield the "STORAGE" resource usage of a whole quota
+   root, but not for each individual mailbox within that root.
 
 2.  Conventions Used in This Document
 
@@ -106,10 +109,7 @@ Table of Contents
 
 
 
-
-
-
-Bosch                   Expires November 5, 2018                [Page 2]
+Bosch                   Expires November 22, 2018               [Page 2]
 
 Internet-Draft        IMAP - STATUS=SIZE Extension              May 2018
 
@@ -165,7 +165,7 @@ Internet-Draft        IMAP - STATUS=SIZE Extension              May 2018
 
 
 
-Bosch                   Expires November 5, 2018                [Page 3]
+Bosch                   Expires November 22, 2018               [Page 3]
 
 Internet-Draft        IMAP - STATUS=SIZE Extension              May 2018
 
@@ -221,7 +221,7 @@ Internet-Draft        IMAP - STATUS=SIZE Extension              May 2018
 
 
 
-Bosch                   Expires November 5, 2018                [Page 4]
+Bosch                   Expires November 22, 2018               [Page 4]
 
 Internet-Draft        IMAP - STATUS=SIZE Extension              May 2018
 
@@ -277,4 +277,4 @@ Author's Address
 
 
 
-Bosch                   Expires November 5, 2018                [Page 5]
+Bosch                   Expires November 22, 2018               [Page 5]
