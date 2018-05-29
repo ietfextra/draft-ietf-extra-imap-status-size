@@ -294,7 +294,7 @@ Author's Address
 
    Stephan Bosch
    Dovecot Oy
-   Lars Sonckin Kaari 10
+   Lars Sonckin Kaari 12
    Espoo  02600
    Finland
 
