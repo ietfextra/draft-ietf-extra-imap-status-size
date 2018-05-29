@@ -4,8 +4,8 @@
 
 EXTRA                                                           S. Bosch
 Internet-Draft                                                Dovecot Oy
-Intended status: Standards Track                            May 21, 2018
-Expires: November 22, 2018
+Intended status: Standards Track                            May 29, 2018
+Expires: November 30, 2018
 
 
     Internet Message Access Protocol (IMAP) - STATUS=SIZE Extension
@@ -34,7 +34,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on November 22, 2018.
+   This Internet-Draft will expire on November 30, 2018.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Bosch                   Expires November 22, 2018               [Page 1]
+Bosch                   Expires November 30, 2018               [Page 1]
 
 Internet-Draft        IMAP - STATUS=SIZE Extension              May 2018
 
@@ -64,11 +64,11 @@ Table of Contents
    2.  Conventions Used in This Document . . . . . . . . . . . . . .   2
    3.  STATUS Command and Response Extensions  . . . . . . . . . . .   3
    4.  Formal Syntax . . . . . . . . . . . . . . . . . . . . . . . .   4
-   5.  Security Considerations . . . . . . . . . . . . . . . . . . .   4
-   6.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   4
-   7.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .   4
-   8.  Normative References  . . . . . . . . . . . . . . . . . . . .   4
-   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .   5
+   5.  Security Considerations . . . . . . . . . . . . . . . . . . .   5
+   6.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   5
+   7.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .   5
+   8.  Normative References  . . . . . . . . . . . . . . . . . . . .   5
+   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .   6
 
 1.  Introduction
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Bosch                   Expires November 22, 2018               [Page 2]
+Bosch                   Expires November 30, 2018               [Page 2]
 
 Internet-Draft        IMAP - STATUS=SIZE Extension              May 2018
 
@@ -129,6 +129,12 @@ Internet-Draft        IMAP - STATUS=SIZE Extension              May 2018
       limit for this mailbox.  This way, the client can directly infer
       the quota usage.
 
+   Since the total storage size of a mailbox can easily exceed 4 GB,
+   clients MUST be capable of receiving 63-bit SIZE data item values.
+   The message size is chosen to be at most 63 bits wide rather than 64
+   bits to make implementations on various platforms (such as Java)
+   easier.
+
    Example:
 
    C: A01 STATUS frop (MESSAGES SIZE UIDNEXT)
@@ -137,6 +143,32 @@ Internet-Draft        IMAP - STATUS=SIZE Extension              May 2018
 
    The same information can be obtained by using the following commands,
    albeit less efficient:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Bosch                   Expires November 30, 2018               [Page 3]
+
+Internet-Draft        IMAP - STATUS=SIZE Extension              May 2018
+
 
    C: A02 SELECT "frop"
    S: * FLAGS (\Answered \Flagged \Deleted \Seen \Draft)
@@ -163,13 +195,6 @@ Internet-Draft        IMAP - STATUS=SIZE Extension              May 2018
    improve efficiency.  This way, the sizes of many mailboxes can be
    queried with just one LIST command.
 
-
-
-Bosch                   Expires November 22, 2018               [Page 3]
-
-Internet-Draft        IMAP - STATUS=SIZE Extension              May 2018
-
-
    Example:
 
    C: A04 LIST "" % RETURN (STATUS (MESSAGES SIZE))
@@ -182,13 +207,35 @@ Internet-Draft        IMAP - STATUS=SIZE Extension              May 2018
 4.  Formal Syntax
 
    The following syntax specification augments the grammar specified in
-   [IMAP4rev1].  It uses the Augmented Backus-Naur Form (ABNF) notation
-   as specified in [ABNF].  Elements not defined here are taken from
-   [IMAP4rev1].
+   [IMAP4rev1] and [IMAP4-ABNF].  It uses the Augmented Backus-Naur Form
+   (ABNF) notation as specified in [ABNF].  Elements not defined here
+   are taken from [IMAP4rev1] and [IMAP4-ABNF].
 
-   capability  =/ "STATUS=SIZE"
 
-   status-att  =/ "SIZE"
+
+
+
+
+
+
+
+
+
+Bosch                   Expires November 30, 2018               [Page 4]
+
+Internet-Draft        IMAP - STATUS=SIZE Extension              May 2018
+
+
+   capability     =/ "STATUS=SIZE"
+
+   status-att     =/ "SIZE"
+
+   status-att-val =/ "SIZE" SP number64
+
+   number64       = 1*DIGIT
+                    ; Unsigned 63-bit integer
+                    ; (0 <= n <= 9,223,372,036,854,775,807)
+
 
 5.  Security Considerations
 
@@ -212,23 +259,28 @@ Internet-Draft        IMAP - STATUS=SIZE Extension              May 2018
    [ABNF]     Crocker, D. and P. Overell, "Augmented BNF for Syntax
               Specifications: ABNF", STD 68, RFC 5234, January 2008.
 
+   [IMAP4-ABNF]
+              Melnikov, A. and C. Daboo, "Collected Extensions to IMAP4
+              ABNF", RFC 4466, DOI 10.17487/RFC4466, April 2006,
+              <https://www.rfc-editor.org/info/rfc4466>.
+
    [IMAP4rev1]
               Crispin, M., "INTERNET MESSAGE ACCESS PROTOCOL - VERSION
               4rev1", RFC 3501, March 2003.
 
-
-
-
-
-
-Bosch                   Expires November 22, 2018               [Page 4]
-
-Internet-Draft        IMAP - STATUS=SIZE Extension              May 2018
-
-
    [KEYWORDS]
               Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119, March 1997.
+
+
+
+
+
+
+Bosch                   Expires November 30, 2018               [Page 5]
+
+Internet-Draft        IMAP - STATUS=SIZE Extension              May 2018
+
 
    [LIST-STATUS]
               Melnikov, A. and T. Sirainen, "IMAP4 Extension for
@@ -277,4 +329,8 @@ Author's Address
 
 
 
-Bosch                   Expires November 22, 2018               [Page 5]
+
+
+
+
+Bosch                   Expires November 30, 2018               [Page 6]

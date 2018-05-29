@@ -103,6 +103,10 @@ response:
   mailbox. This way, the client can directly infer the quota usage.</t>
 </list>
 </t>
+<t>Since the total storage size of a mailbox can easily exceed 4 GB, clients
+MUST be capable of receiving 63-bit SIZE data item values. The message size is
+chosen to be at most 63 bits wide rather than 64 bits to make implementations
+on various platforms (such as Java) easier.</t>
 
 <t>Example:</t>
 <?rfc needLines="4" ?>
@@ -157,15 +161,23 @@ S: A04 OK List completed.
 
 <section anchor="Syntax" title="Formal Syntax">
 <t>The following syntax specification augments the grammar specified in
-<xref target="IMAP4rev1"/>. It uses the Augmented Backus-Naur Form (ABNF)
-notation as specified in <xref target="ABNF"/>. Elements not defined here are
-taken from <xref target="IMAP4rev1"/>.</t>
+<xref target="IMAP4rev1"/> and <xref target="IMAP4-ABNF"/>. It uses the
+Augmented Backus-Naur Form (ABNF) notation as specified in
+<xref target="ABNF"/>. Elements not defined here are taken from
+<xref target="IMAP4rev1"/> and <xref target="IMAP4-ABNF"/>.</t>
 
 <?rfc needLines="2" ?>
 <figure><artwork type="ABNF"><![CDATA[
-capability  =/ "STATUS=SIZE"
+capability     =/ "STATUS=SIZE"
 
-status-att  =/ "SIZE"
+status-att     =/ "SIZE"
+
+status-att-val =/ "SIZE" SP number64
+
+number64       = 1*DIGIT
+                 ; Unsigned 63-bit integer
+                 ; (0 <= n <= 9,223,372,036,854,775,807)
+
 ]]></artwork></figure>
 
 </section>
@@ -246,6 +258,17 @@ for reviews and suggestions.</t>
 		</front>
 		<seriesInfo name='RFC' value='3501' />
 		<format type='TXT' octets='227640' target='http://www.rfc-editor.org/rfc/rfc3501.txt' />
+	</reference>
+
+	<reference  anchor='IMAP4-ABNF' target='https://www.rfc-editor.org/info/rfc4466'>
+		<front>
+		<title>Collected Extensions to IMAP4 ABNF</title>
+		<author initials='A.' surname='Melnikov' fullname='A. Melnikov'><organization /></author>
+		<author initials='C.' surname='Daboo' fullname='C. Daboo'><organization /></author>
+		<date year='2006' month='April' />
+		</front>
+		<seriesInfo name='RFC' value='4466'/>
+		<seriesInfo name='DOI' value='10.17487/RFC4466'/>
 	</reference>
 
 	<reference anchor='LIST-STATUS'>
