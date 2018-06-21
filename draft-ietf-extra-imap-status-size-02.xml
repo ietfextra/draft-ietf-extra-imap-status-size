@@ -53,7 +53,7 @@ sizes of all individual messages in that mailbox.
 <middle>
 
 <section title="Introduction">
-<t>This document extends Internet Message Access Protocol
+<t>This document extends the Internet Message Access Protocol
 (IMAP) <xref target="IMAP4rev1"/> with a new capability called "STATUS=SIZE".
 To determine the total storage size of a mailbox, an IMAP client currently needs
 to retrieve all message sizes individually using the FETCH command with the
